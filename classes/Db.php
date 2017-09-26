@@ -21,11 +21,12 @@ class Db
 	}
 	public function oneQuery($sql,$class='stdClass')
 	{
+		mysqli_set_charset($this->link, "utf8");
 		return $this->query($sql,$class)[0];
 	}
 	public function queryJ($sql)
 	{
-		$this->link->set_charset(utf8);
+		mysqli_set_charset($this->link, "utf8");
 		$res = mysqli_query($this->link,$sql);
 		return $res;
 	}
