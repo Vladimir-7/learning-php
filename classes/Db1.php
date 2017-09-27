@@ -6,7 +6,7 @@ class Db1
 
 	public function __construct()
 	{
-		$this->dbh = new PDO("mysql:dbname=news;host=localhost;charset=cp1251",'root','admin');
+		$this->dbh = new PDO("mysql:dbname=news;host=localhost;charset=utf8",'root','9058393913');
 
 	}
 	public function setClassName($className)
@@ -19,7 +19,12 @@ class Db1
 		$sth = $this->dbh->prepare($sql);
 		$sth->execute($params);
 		return $sth->fetchAll(PDO::FETCH_CLASS, $this->className);
-
+	}
+	public function execute($sql,$params=[])
+	{
+		$sth = $this->dbh->prepare($sql);
+		return $sth->execute($params);
+		
 	}
 }
 ?>

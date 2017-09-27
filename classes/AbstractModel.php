@@ -1,7 +1,18 @@
 <?php
+require_once __DIR__ . '/Db1.php';
 abstract class AbstractModel
 {
 	static protected $table;
+	protected $data = [];
+
+	public function __set($k,$v)
+	{
+		$this->data[$k] = $v;
+	}
+	public function __get($k)
+	{
+		return $this->data[$k];
+	}
 
 		//МЕТОД вывода всех строк из таблицы
 	public static function findAll()
@@ -26,4 +37,22 @@ abstract class AbstractModel
 		//Здесь передаем id новости из таблицы.
 		return $db1->query($sql, [':id' => $id]);
 	}
+	public function insert()
+	{	$cols = array_keys($this->data);
+		$ins = [];
+		foreach($cols as $col)
+		{
+			$ins[] = ':' . $col;
+			$data[':' . $col] = $this->data[$col];
+		}
+		var_dump($cols);
+		$sql = "INSERT INTO " . static::$table . ' 
+		('. implode(',',$cols) .')
+		 VALUES 
+		('. implode(',',$ins) .')
+		  '; 
+		$db = new Db1();
+		$db->execute($sql,$data);
+	}
+	
 }
