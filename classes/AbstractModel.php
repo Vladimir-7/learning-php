@@ -45,14 +45,14 @@ abstract class AbstractModel
 			$ins[] = ':' . $col;
 			$data[':' . $col] = $this->data[$col];
 		}
-		var_dump($cols);
-		$sql = "INSERT INTO " . static::$table . ' 
+		//var_dump($this->data);
+		$sql = "INSERT INTO " . static::$table . '
 		('. implode(',',$cols) .')
-		 VALUES 
+		 VALUES
 		('. implode(',',$ins) .')
-		  '; 
+		  ';
 		$db = new Db1();
 		$db->execute($sql,$data);
 	}
-	
+
 }

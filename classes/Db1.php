@@ -6,7 +6,7 @@ class Db1
 
 	public function __construct()
 	{
-		$this->dbh = new PDO("mysql:dbname=news;host=localhost;charset=utf8",'root','9058393913');
+		$this->dbh = new PDO("mysql:dbname=news;host=localhost;charset=utf8",'root','admin');
 
 	}
 	public function setClassName($className)
@@ -24,7 +24,7 @@ class Db1
 	{
 		$sth = $this->dbh->prepare($sql);
 		return $sth->execute($params);
-		
+
 	}
 }
 ?>
